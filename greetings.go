@@ -35,3 +35,21 @@ func Hello(name string) (string, error) {
 	// Return the message and an empty error
 	return message, nil
 }
+
+// Function takes a slice parameter.
+// Returns a map of string keys and string value pairs.
+func Hellos(names []string) (map[string]string, error) {
+	// Maps need to be initialised with 'make'
+	messages := make(map[string]string)
+	// Iterate over a slice using 'range'.
+	for _, name := range names {
+		message, err := Hello(name)
+		// Exit quickly if one names returns an error.
+		if err != nil {
+			return nil, err
+		}
+		// Assign a value to a key using index notation.
+		messages[name] = message
+	}
+	return messages, nil
+}
